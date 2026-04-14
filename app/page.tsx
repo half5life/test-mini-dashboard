@@ -48,10 +48,10 @@ export default async function Home() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <div style={{ marginBottom: '2rem' }}>
             <h2 className="text-4xl font-bold">
-              Revenue over time
+              Orders by Amount
             </h2>
             <p className="text-2xl text-gray-800 mt-4">
-              Daily aggregate of completed orders
+              Distribution of orders by their total sum
             </p>
           </div>
           <div style={{ border: '1px solid black', padding: '1.5rem', width: '100%', maxWidth: '800px' }}>
