@@ -26,26 +26,49 @@ export async function POST(request: Request) {
 async function parseOrder(request: Request) {
   let order: any = {};
   const contentType = request.headers.get('content-type') || '';
+  
+  const textBody = await request.text();
+  console.log('Webhook Content-Type:', contentType);
+  console.log('Webhook Raw Body:', textBody);
 
-  if (contentType.includes('application/json')) {
-    const body = await request.json();
-    order = body.order || body;
-  } else if (contentType.includes('application/x-www-form-urlencoded')) {
-    const formData = await request.formData();
-    const orderStr = formData.get('order') as string;
-    
-    if (orderStr) {
-      try {
+  if (!textBody) {
+    return order;
+  }
+
+  try {
+    if (contentType.includes('application/json')) {
+      const body = JSON.parse(textBody);
+      order = body.order || body;
+    } else if (contentType.includes('application/x-www-form-urlencoded')) {
+      const params = new URLSearchParams(textBody);
+      const orderStr = params.get('order');
+      
+      if (orderStr) {
         order = JSON.parse(orderStr);
-      } catch (e) {
-        console.error('Failed to parse order JSON from formData', e);
+      } else {
+        // Fallback for custom triggers that might send flat fields
+        order.id = params.get('id');
+        order.number = params.get('number');
+        order.totalSumm = params.get('totalSumm');
+        
+        // Remove empty fields from fallback
+        Object.keys(order).forEach(key => {
+          if (order[key] === null || order[key] === undefined) {
+            delete order[key];
+          }
+        });
       }
     } else {
-      // Fallback for custom triggers that might send flat fields
-      order.id = formData.get('id');
-      order.number = formData.get('number');
-      order.totalSumm = formData.get('totalSumm');
+      // Fallback: try parsing as JSON if content-type is missing or unexpected
+      try {
+        const body = JSON.parse(textBody);
+        order = body.order || body;
+      } catch (e) {
+        console.log('Not a JSON payload');
+      }
     }
+  } catch (e: any) {
+    console.error('Failed to parse webhook body:', e.message);
   }
 
   return order;
