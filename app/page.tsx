@@ -20,7 +20,7 @@ export default async function Home() {
 
   return (
     <div className="font-serif text-black min-h-screen bg-white flex flex-col items-center">
-      <div className="w-full max-w-4xl px-6 py-12">
+      <div className="w-full max-w-4xl px-4 py-12">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-6">
             Orders Dashboard
@@ -32,12 +32,12 @@ export default async function Home() {
 
         <div className="flex justify-center mb-12">
           <div className="inline-flex border border-black text-left">
-            <div className="border-r border-black px-10 py-6 sm:px-12 sm:py-8">
+            <div className="border-r border-black px-16 sm:px-24 py-8">
               <h2 className="font-bold text-2xl sm:text-3xl whitespace-nowrap">
                 Total Orders: {totalOrders}
               </h2>
             </div>
-            <div className="px-10 py-6 sm:px-12 sm:py-8">
+            <div className="px-16 sm:px-24 py-8">
               <h2 className="font-bold text-2xl sm:text-3xl whitespace-nowrap">
                 Total Revenue: {new Intl.NumberFormat('ru-RU').format(totalRevenue)} KZT
               </h2>
@@ -54,7 +54,7 @@ export default async function Home() {
               Daily aggregate of completed orders
             </p>
           </div>
-          <div className="border border-black p-6 w-full max-w-3xl">
+          <div className="border border-black p-6 w-[700px] max-w-full">
             <DashboardChart data={orderData} />
           </div>
         </div>
