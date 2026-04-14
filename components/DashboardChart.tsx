@@ -79,7 +79,7 @@ export default function DashboardChart({ data }: { data: OrderData[] }) {
               boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
               padding: '12px'
             }}
-            formatter={(value: any) => [Number(value).toLocaleString('ru-RU') + ' ₸', 'Выручка']}
+            formatter={(value: number) => [value.toLocaleString('ru-RU') + ' ₸', 'Выручка']}
             labelStyle={{ color: '#0f172a', fontWeight: 600, marginBottom: '6px' }}
           />
           <Bar 
