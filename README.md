@@ -12,7 +12,7 @@
 
 ## Ссылки
 
-- **Дашборд (Vercel):** [https://test-mini-dashboard.vercel.app](https://test-mini-dashboard.vercel.app) *(Замените на вашу актуальную ссылку)*
+- **Дашборд (Vercel):** [https://test-mini-dashboard.vercel.app](https://test-mini-dashboard.vercel.app)
 
 ## Как запустить локально
 
