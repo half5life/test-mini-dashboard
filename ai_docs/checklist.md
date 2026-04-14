@@ -14,13 +14,13 @@
 - [x] Создать пустой GitHub репозиторий для проекта.
 
 ## Этап 2: Импорт в RetailCRM
-- [ ] Инициализировать Node.js проект с TypeScript (`npm init`, `tsc --init`).
-- [ ] Установить зависимости (`axios`, `dotenv`, `typescript`, `ts-node`).
-- [ ] Создать файл `.env` и добавить ключи от RetailCRM.
-- [ ] Написать TypeScript-скрипт чтения `mock_orders.json`.
-- [ ] Реализовать маппинг полей JSON в формат API RetailCRM.
-- [ ] Реализовать отправку POST-запросов к `/api/v5/orders/create`.
-- [ ] Запустить скрипт и убедиться, что 50 заказов появились в интерфейсе RetailCRM.
+- [x] Инициализировать Node.js проект с TypeScript (`npm init`, `tsc --init`).
+- [x] Установить зависимости (`axios`, `dotenv`, `typescript`, `ts-node`).
+- [x] Создать файл `.env` и добавить ключи от RetailCRM.
+- [x] Написать TypeScript-скрипт чтения `mock_orders.json`.
+- [x] Реализовать маппинг полей JSON в формат API RetailCRM.
+- [x] Реализовать отправку POST-запросов к `/api/v5/orders/create`.
+- [x] Запустить скрипт и убедиться, что 50 заказов появились в интерфейсе RetailCRM.
 
 ## Этап 3: Синхронизация RetailCRM → Supabase
 - [ ] Установить библиотеку `@supabase/supabase-js`.
