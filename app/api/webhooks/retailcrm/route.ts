@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -9,6 +10,8 @@ export async function POST(request: Request) {
     }
 
     const totalSumm = calculateTotalSum(order);
+
+    await syncOrderToSupabase(order, totalSumm);
 
     if (totalSumm > 50000) {
       await sendTelegramNotification(order, totalSumm);
@@ -82,6 +85,32 @@ function calculateTotalSum(order: any): number {
   }
 
   return totalSumm;
+}
+
+async function syncOrderToSupabase(order: any, totalSumm: number) {
+  const crmOrderId = parseInt(order.id, 10);
+  
+  if (!crmOrderId || isNaN(crmOrderId)) {
+    console.error('Cannot sync to Supabase: order id is missing or invalid');
+    return;
+  }
+
+  const supabaseOrder = {
+    crm_order_id: crmOrderId,
+    total_sum: totalSumm,
+    status: order.status || 'new', // Дефолтный статус, если RetailCRM его не прислал
+    created_at: order.createdAt ? new Date(order.createdAt).toISOString() : new Date().toISOString()
+  };
+
+  const { error } = await supabase
+    .from('orders')
+    .upsert([supabaseOrder], { onConflict: 'crm_order_id' });
+
+  if (error) {
+    console.error(`Failed to sync order #${crmOrderId} to Supabase:`, error.message);
+  } else {
+    console.log(`Successfully synced order #${crmOrderId} to Supabase in real-time.`);
+  }
 }
 
 async function sendTelegramNotification(order: any, totalSumm: number) {
