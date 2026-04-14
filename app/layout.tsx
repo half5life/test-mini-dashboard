@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased bg-gray-50 text-gray-900">
+      <body className="antialiased bg-white text-slate-900">
         <main className="min-h-screen">
           {children}
         </main>

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+﻿import { supabase } from '@/lib/supabase'
 import DashboardChart from '@/components/DashboardChart'
 
 // Next.js config to disable static generation as we need fresh data from the DB
@@ -19,27 +19,44 @@ export default async function Home() {
   const totalRevenue = orderData.reduce((sum, order) => sum + (order.total_sum || 0), 0)
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Orders Mini Dashboard</h1>
-        <p className="text-gray-600 mt-2">Overview of sales and order volume</p>
+    <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+      <header className="mb-10 text-center md:text-left">
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">
+          Orders Dashboard
+        </h1>
+        <p className="text-lg text-slate-500 mt-3">
+          Overview of sales and order volume
+        </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <h2 className="text-sm font-medium text-gray-500 mb-1">Total Orders</h2>
-          <p className="text-3xl font-bold text-gray-900">{totalOrders}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
+          <h2 className="text-sm font-semibold tracking-wide text-slate-500 uppercase mb-2">
+            Total Orders
+          </h2>
+          <p className="text-5xl font-black text-slate-800">
+            {totalOrders}
+          </p>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-          <h2 className="text-sm font-medium text-gray-500 mb-1">Total Revenue</h2>
-          <p className="text-3xl font-bold text-blue-600">
-            {new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'KZT' }).format(totalRevenue)}
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
+          <h2 className="text-sm font-semibold tracking-wide text-slate-500 uppercase mb-2">
+            Total Revenue
+          </h2>
+          <p className="text-4xl font-black text-blue-600">
+            {new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'KZT', maximumFractionDigits: 0 }).format(totalRevenue)}
           </p>
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Revenue over time</h2>
+      <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+        <div className="mb-6">
+          <h2 className="text-xl font-bold text-slate-900">
+            Revenue over time
+          </h2>
+          <p className="text-sm text-slate-500 mt-1">
+            Daily aggregate of completed orders
+          </p>
+        </div>
         <DashboardChart data={orderData} />
       </div>
     </div>

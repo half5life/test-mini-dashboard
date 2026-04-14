@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -34,7 +34,7 @@ export default function DashboardChart({ data }: { data: OrderData[] }) {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="total" fill="#3b82f6" name="Total Sum (₸)" />
+          <Bar dataKey="total" fill="#3b82f6" name="Total Sum (₸)" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
