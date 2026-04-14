@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS public.orders (
+    id SERIAL PRIMARY KEY,
+    crm_order_id INT UNIQUE NOT NULL,
+    total_sum NUMERIC NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
