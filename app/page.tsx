@@ -32,13 +32,13 @@ export default async function Home() {
 
         <div className="flex justify-center mb-12">
           <div className="inline-flex border border-black text-left">
-            <div className="border-r border-black px-16 sm:px-24 py-8">
-              <h2 className="font-bold text-2xl sm:text-3xl whitespace-nowrap">
+            <div className="border-r border-black flex items-center">
+              <h2 className="font-bold text-2xl sm:text-3xl whitespace-nowrap mx-10 my-6 sm:mx-14 sm:my-8">
                 Total Orders: {totalOrders}
               </h2>
             </div>
-            <div className="px-16 sm:px-24 py-8">
-              <h2 className="font-bold text-2xl sm:text-3xl whitespace-nowrap">
+            <div className="flex items-center">
+              <h2 className="font-bold text-2xl sm:text-3xl whitespace-nowrap mx-10 my-6 sm:mx-14 sm:my-8">
                 Total Revenue: {new Intl.NumberFormat('ru-RU').format(totalRevenue)} KZT
               </h2>
             </div>
