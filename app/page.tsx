@@ -1,4 +1,4 @@
-﻿import { supabase } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import DashboardChart from '@/components/DashboardChart'
 
 // Next.js config to disable static generation as we need fresh data from the DB
@@ -19,7 +19,7 @@ export default async function Home() {
   const totalRevenue = orderData.reduce((sum, order) => sum + (order.total_sum || 0), 0)
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+    <div className="max-w-4xl mx-auto px-8 sm:px-16 md:px-24 py-12 md:py-16">
       <header className="mb-10 text-center md:text-left">
         <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">
           Orders Dashboard
@@ -29,16 +29,16 @@ export default async function Home() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
+      <div className="flex flex-wrap gap-6 mb-10 justify-center md:justify-start">
+        <div className="bg-white px-8 py-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
           <h2 className="text-sm font-semibold tracking-wide text-slate-500 uppercase mb-2">
             Total Orders
           </h2>
-          <p className="text-5xl font-black text-slate-800">
+          <p className="text-4xl font-black text-slate-800">
             {totalOrders}
           </p>
         </div>
-        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
+        <div className="bg-white px-8 py-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-center">
           <h2 className="text-sm font-semibold tracking-wide text-slate-500 uppercase mb-2">
             Total Revenue
           </h2>
